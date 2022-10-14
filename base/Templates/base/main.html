@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../../static/css/vid.css" />
+    <title>Verodini</title>
+  </head>
+  <body class="bg-lightGrey2 items-center justify-center">
+    <nav
+      class="bg-lightGrey1 flex flex-row justify-between w-full shadow-lg px-16 pt-2"
+    >
+      <div class="w-[70px] h-[70px]">
+        <img
+          src="{% static 'assets/logo1.png' %}"
+          alt=""
+          class="w-[60px] h-[40px]"
+        />
+      </div>
+      <div class="flex flex-row justify-between">
+        <ul class="flex flex-row justify-between mr-2">
+          <li class="text-mainBlue font-semibold text-[20px] mr-4">Home</li>
+          <li class="text-mainBlue font-semibold text-[20px] mr-4">Category</li>
+          <li class="text-mainBlue font-semibold text-[20px] mr-4">About Us</li>
+        </ul>
+        <div>
+          <input
+            type="text"
+            name="search"
+            placeholder="Search"
+            id="search"
+            class="bg-lightGrey2 border-2 border-slate-300 rounded-[10px] p-2"
+          />
+          <a href="#signup" class="bg-mainBlue rounded-lg text-white p-2"
+            >Signup</a
+          >
+        </div>
+      </div>
+    </nav>
+    {% block content %} {% endblock content %}
+  </body>
+</html>

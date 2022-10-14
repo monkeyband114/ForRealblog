@@ -1,0 +1,32 @@
+{% extends 'base/main.html' %} {% load static %}
+<!-- ava -->
+{% block content %}
+<!-- hero text -->
+<section class="mx-8 my-4">
+  <div class="bg-white rounded-xl shadow-lg pb-3">
+    <img
+      src="{% static 'assets\placeholder.png' %}"
+      alt=""
+      class="object-contain w-full h-[440px] rounded-xl"
+    />
+    <div class="px-16 mb-8">
+      <div class="object-contain items-center justify-center">
+        <h1 class="text-mainBlue text-lg font-semibold">
+          {{post.title}}
+          <span class="text-gray-600 font-normal"> - by {{post.author}}</span>
+        </h1>
+      </div>
+      <div class="mb-8 mt-6">
+        <p>{{post.article}}</p>
+      </div>
+      <div class="flex flex-row gap-2">
+        {% for tag in tags %}
+        <span class="p-2 rounded-xl bg-lightGrey2 text-mainBlue mb-4">
+          #{{tag.name}}
+        </span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
