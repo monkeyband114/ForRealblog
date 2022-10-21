@@ -8,7 +8,7 @@ class Tags(models.Model):
         return self.name
     
 class Images(models.Model):
-    image = models.ImageField(null=True)
+    image = models.ImageField()
     # name = models.ForeignKey('Blogpost', on_delete=models.CASCADE)
     
     def __str__(self):
@@ -20,7 +20,7 @@ class Blogpost(models.Model):
     title = models.TextField(max_length=100, null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     article = models.TextField(blank=True, null=True)
-    images = models.ForeignKey('Images', on_delete=models.CASCADE)
+    image = models.ForeignKey('Images', on_delete=models.CASCADE, default="placeholder.png")
     tag = models.ManyToManyField(Tags, related_name='tags', blank=True)
     
     
