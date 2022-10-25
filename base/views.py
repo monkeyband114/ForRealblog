@@ -1,3 +1,4 @@
+from email.message import Message
 from multiprocessing import context
 from django.shortcuts import render
 from . models import *
@@ -15,8 +16,15 @@ def homePage(request):
 def postPage(request, pk):
     post = Blogpost.objects.get(id=pk)
     tags = post.tag.all()
-    image = post.image
     
+    post_comment = post.commentchat_set.all().order_by('-created')
     
-    context = {'post': post, 'tags': tags, 'image':image}
+    if request.method == 'POST':
+        comment = CommentChat.objects.create(
+            user = request.user,
+            post = post,
+            comment=request.POST.get('body')
+        )
+    
+    context = {'post': post, 'tags': tags, 'post_comment':post_comment}
     return render(request, 'base/postpage.html', context)
