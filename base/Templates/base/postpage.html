@@ -29,11 +29,19 @@
     </div>
   </div>
   <!-- comment here  -->
-  <div>
+  {% if request.user.is_authenticated %}
+  <div class="my-2">
     <form method="POST" action="">
-      <input type="text" name="body" placeholder="Write your comments here" />
+      {% csrf_token %}
+      <input
+        class="h-8 w-full rounded-lg border bg-slate-50 border-mainBlue text-mainBlack border-none"
+        type="text"
+        name="body"
+        placeholder="Write your comments here"
+      />
     </form>
   </div>
+  {% endif %}
   <!-- comment section -->
   <div>
     <div class="my-4">
@@ -41,6 +49,7 @@
     </div>
     <!-- actuall comments  -->
     <div class="flex flex-col gap-2">
+      {% for comment in post_comment %}
       <div class="bg-lightGrey1 rounded-lg shadow-lg p-2">
         <div class="flex flex-row">
           <div class="rounded-full w-[20px] h-[20px]">
@@ -50,13 +59,10 @@
               class="object-contain rounded-full"
             />
           </div>
-          <div class="">
-            <h4 class="font-semibold">John Snow</h4>
-            <p class="text-slate-500">3 hrs ago</p>
-            <p>
-              this is so acurate Lorem ipsum dolor sit, soluta corrupti
-              molestias.
-            </p>
+          <div class="ml-2">
+            <h4 class="font-semibold">{{user.username}}</h4>
+            <p class="text-slate-500">{{comment.created|timesince}} ago</p>
+            <p>{{comment.comment}}</p>
           </div>
         </div>
         <div>
@@ -64,64 +70,20 @@
 
           <div class="flex flex-row gap-2">
             <p>&#x2764; Liked</p>
-            <p>Comments(3)</p>
-          </div>
-        </div>
-      </div>
-      <div class="bg-lightGrey1 rounded-lg shadow-lg p-2">
-        <div class="flex flex-row">
-          <div class="rounded-full w-[20px] h-[20px]">
-            <img
-              src="../../../static/assets/1662188224281.png"
-              alt="picicon"
-              class="object-contain rounded-full"
-            />
-          </div>
-          <div class="">
-            <h4 class="font-semibold">John Snow</h4>
-            <p class="text-slate-500">3 hrs ago</p>
-            <p>
-              this is so acurate Lorem ipsum dolor sit, soluta corrupti
-              molestias.
+            {% if request.user == comment.user %}
+            <p
+              data-id="{{comment.user.id}}"
+              data-action="POST"
+              id="delle"
+              class="cursor-pointer font-medium text-mainBlue hover:text-red-600"
+            >
+              Delete
             </p>
-          </div>
-        </div>
-        <div>
-          <hr class="bg-blue-500" />
-
-          <div class="flex flex-row gap-2">
-            <p>&#x2764; Liked</p>
-            <p>Comments(3)</p>
+            {% endif %}
           </div>
         </div>
       </div>
-      <div class="bg-lightGrey1 rounded-lg shadow-lg p-2">
-        <div class="flex flex-row">
-          <div class="rounded-full w-[20px] h-[20px]">
-            <img
-              src="../../../static/assets/1662188224281.png"
-              alt="picicon"
-              class="object-contain rounded-full"
-            />
-          </div>
-          <div class="">
-            <h4 class="font-semibold">John Snow</h4>
-            <p class="text-slate-500">3 hrs ago</p>
-            <p>
-              this is so acurate Lorem ipsum dolor sit, soluta corrupti
-              molestias.
-            </p>
-          </div>
-        </div>
-        <div>
-          <hr class="bg-blue-500" />
-
-          <div class="flex flex-row gap-2">
-            <p>&#x2764; Liked</p>
-            <p>Comments(3)</p>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>
