@@ -10,7 +10,7 @@
   </head>
   <body class="bg-lightGrey2 items-center justify-center">
     <nav
-      class="bg-lightGrey1 flex flex-row justify-between w-full shadow-lg px-16 pt-2"
+      class="bg-lightGrey1 flex flex-row justify-between w-full shadow-lg px-[200px] pt-2"
     >
       <div class="w-[70px] h-[70px]">
         <img
@@ -19,13 +19,13 @@
           class="w-[60px] h-[40px]"
         />
       </div>
-      <div class="flex flex-row justify-between">
-        <ul class="flex flex-row justify-between mr-2">
+      <div class="hidden md:flex flex-col md:flex-row justify-between">
+        <ul class="flex flex-col md:flex-row justify-between mr-2">
           <li class="text-mainBlue font-semibold text-[20px] mr-4">Home</li>
           <li class="text-mainBlue font-semibold text-[20px] mr-4">Category</li>
           <li class="text-mainBlue font-semibold text-[20px] mr-4">About Us</li>
         </ul>
-        <div>
+        <div class="flex flex-col md:flex-row mb-2 pt-0 pb-4 gap-2">
           <input
             type="text"
             name="search"
