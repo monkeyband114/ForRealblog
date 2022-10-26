@@ -72,10 +72,10 @@
             <p>&#x2764; Liked</p>
             {% if request.user == comment.user %}
             <p
-              data-id="{{comment.user.id}}"
-              data-action="POST"
+              data-id="{{comment.id}}"
+              data-user="{{comment.user.id}}"
               id="delle"
-              class="cursor-pointer font-medium text-mainBlue hover:text-red-600"
+              class="cursor-pointer font-medium text-mainBlue hover:text-red-600 delle"
             >
               Delete
             </p>

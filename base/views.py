@@ -1,4 +1,5 @@
 from email.message import Message
+import json
 from multiprocessing import context
 from django.shortcuts import redirect, render
 from . models import *
@@ -31,15 +32,25 @@ def postPage(request, pk):
     return render(request, 'base/postpage.html', context)
 
 
-def deleteMessage(request, pk):
+def ddeleteComment(request):
+    data = json.loads(request.body)
+    userId = data['userId']
+    commentId = data['commentId']
+    print('userid:', userId)
+    print('commentid:', commentId)
     
-    message = Message.objects.get(id=pk)
     
-    if request.user != message.user:
-        return HttpResponse('cannot delete not your message')
+    comment = CommentChat.objects.get(id=commentId)
+    user = User.objects.get(id=userId)
     
+    if user != comment.user:
+        print('deleted not working')
+        return JsonResponse('cannot delete not your message', safe=False)
+        
+        
+        
     if request.method == 'POST':
-        message.delete()
-        return redirect('home')
+        comment.delete()
+        print('deleted')
     
     return JsonResponse('deleted comment', safe=False)
