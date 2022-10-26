@@ -1,8 +1,9 @@
 {% extends 'base/main.html' %} {% load static %}
 <!-- ava -->
 {% block content %}
+<div class="mx-8 my-4 lg:px-[200px] bg"></div>
 <!-- hero text -->
-<section class="mx-8 my-4 lg:px-[200px]">
+<section class="mx-8 my-4 px-2 lg:px-[200px]">
   <div class="bg-white rounded-xl shadow-lg pb-3">
     <img
       src="{{post.image.url}}"
@@ -19,7 +20,7 @@
       <div class="mb-8 mt-6">
         <p>{{post.article}}</p>
       </div>
-      <div class="flex flex-row gap-2">
+      <div class="flex flex-col md:flex-row gap-2">
         {% for tag in tags %}
         <span class="p-2 rounded-xl bg-lightGrey2 text-mainBlue mb-4">
           #{{tag.name}}
@@ -45,7 +46,9 @@
   <!-- comment section -->
   <div>
     <div class="my-4">
-      <h2 class="text-3xl font-semibold text-mainBlue">Comments(3)</h2>
+      <h2 class="text-3xl font-semibold text-mainBlue">
+        Comments({{post_comment.count}})
+      </h2>
     </div>
     <!-- actuall comments  -->
     <div class="flex flex-col gap-2">
@@ -54,13 +57,13 @@
         <div class="flex flex-row">
           <div class="rounded-full w-[20px] h-[20px]">
             <img
-              src="../../../static/assets/1662188224281.png"
+              src="../../../static/assets/mike.png"
               alt="picicon"
               class="object-contain rounded-full"
             />
           </div>
           <div class="ml-2">
-            <h4 class="font-semibold">{{user.username}}</h4>
+            <h4 class="font-semibold">{{comment.user.username}}</h4>
             <p class="text-slate-500">{{comment.created|timesince}} ago</p>
             <p>{{comment.comment}}</p>
           </div>

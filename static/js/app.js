@@ -2,6 +2,18 @@ let coment = document.getElementsByClassName("delle");
 
 console.log("js working");
 
+let butn = document.getElementById("butm");
+let hammer = document.getElementById("hamm");
+let hammerx = document.getElementById("hammx");
+let menu = document.getElementById("menu");
+
+butn.addEventListener("click", () => {
+  console.log("click");
+  hammer.classList.toggle("hidden");
+  menu.classList.toggle("hidden");
+  hammerx.classList.toggle("hidden");
+});
+
 for (let i = 0; i < coment.length; i++) {
   coment[i].addEventListener("click", () => {
     let add = Math.trunc(coment.length);

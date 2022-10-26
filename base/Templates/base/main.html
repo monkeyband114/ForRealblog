@@ -41,13 +41,30 @@
           class="w-[60px] h-[40px]"
         />
       </div>
-      <div class="hidden md:flex flex-col md:flex-row justify-between">
+      <button id="butm" class="md:hidden w-[50px] h-[50px]">
+        <img
+          id="hamm"
+          src="{% static 'assets/menu.svg' %}"
+          alt=""
+          class="w-[40px] h-[40px]"
+        />
+        <img
+          id="hammx"
+          src="{% static 'assets/chevron.svg' %}"
+          alt=""
+          class="hidden w-[40px] h-[40px]"
+        />
+      </button>
+      <div
+        id="menu"
+        class="hidden absolute flex flex-col md:left-0 top-10 justify-self-end rounded-lg bg-slate-300 md:bg-lightGrey1 md:relative md:mt-0 md:top-0 md:flex flex-col md:flex-row md:justify-between"
+      >
         <ul class="flex flex-col md:flex-row justify-between mr-2">
           <li class="text-mainBlue font-semibold text-[20px] mr-4">Home</li>
           <li class="text-mainBlue font-semibold text-[20px] mr-4">Category</li>
           <li class="text-mainBlue font-semibold text-[20px] mr-4">About Us</li>
         </ul>
-        <div class="flex flex-col md:flex-row mb-2 pt-0 pb-4 gap-2">
+        <div class="flex flex-col md:flex-row mb-2 pt-0 pb-4">
           <input
             type="text"
             name="search"
@@ -55,13 +72,36 @@
             id="search"
             class="bg-lightGrey2 border-2 border-slate-300 rounded-[10px] p-2"
           />
-          <a href="#signup" class="bg-mainBlue rounded-lg text-white p-2"
-            >Signup</a
+          {% if request.user.is_authenticated %}
+          <a href="#" class="p-2">
+            <div class="rounded-full w-[20px] h-[20px]">
+              <img
+                src="{% static 'assets/mike.png' %}"
+                alt=""
+                class="object-contain rounded-full"
+              />
+            </div>
+            <div>
+              <p>{{user.username}}</p>
+            </div>
+          </a>
+          {% else %}
+          <a
+            href="{% url 'login' %}"
+            class="bg-mainBlue rounded-lg text-white p-2"
+            >Login</a
           >
+          {% endif %}
         </div>
       </div>
     </nav>
-    {% block content %} {% endblock content %}
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% block content %} {% endblock content %}
     <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
   </body>
 </html>

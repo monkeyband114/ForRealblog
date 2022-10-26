@@ -3,7 +3,8 @@ from .import views
 
 urlpatterns = [
     path('', views.homePage, name="home"),
+    path('login/', views.loginpage, name='login'),
     path('postpage/<str:pk>/', views.postPage, name="postpage"),
-    path('deletecomment/', views.ddeleteComment, name='delete-comment' )
+    path('deletecomment/', views.deleteComment, name='delete-comment')
     
 ]
