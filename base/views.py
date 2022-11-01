@@ -50,6 +50,11 @@ def loginpage(request):
     return render(request, 'base/loginpage.html', context)
 
 
+def logoutUser(request):
+    logout(request)
+    return redirect('home')
+
+
 def homePage(request):
     posts = Blogpost.objects.all()
     context = {'posts': posts}
