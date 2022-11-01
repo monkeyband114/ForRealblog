@@ -34,7 +34,7 @@ def loginpage(request):
         password = request.POST.get('password')
         
         try:
-            user = User.objects.get(username=username)
+            user = User.objects.get(email=username)
         except:
             messages.error(request, 'user dosnot exist')
         
@@ -61,10 +61,21 @@ def homePage(request):
     
     return render(request, 'base/home.html', context)
 
+def aboutUs(request):
+    
+    return render(request, 'base/about.html')
+
+
+def category(request):
+    posts = Blogpost.objects.all()
+    
+    return render(request, 'base/category.html', {'posts': posts})
+
 
 
 def postPage(request, pk):
     post = Blogpost.objects.get(id=pk)
+    author = User.objects.get(id=pk)
     tags = post.tag.all()
     users = User.objects.all()
     post_comment = post.commentchat_set.all().order_by('-created')
@@ -77,7 +88,7 @@ def postPage(request, pk):
         )
         return redirect('postpage', pk=post.id)
     
-    context = {'post': post, 'tags': tags, 'post_comment':post_comment}
+    context = {'post': post, 'tags': tags, 'post_comment':post_comment, 'author':author}
     return render(request, 'base/postpage.html', context)
 
 
