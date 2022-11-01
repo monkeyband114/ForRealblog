@@ -4,10 +4,29 @@ from django.contrib import messages
 import json
 from multiprocessing import context
 from django.shortcuts import redirect, render
+from base.forms import MyUserStartForm
 from . models import *
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, JsonResponse
 
+
+def signup(request):
+    form = MyUserStartForm()
+    
+    if request.method == 'POST':
+        form =MyUserStartForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'An Error Occored unable to process')
+            
+    context = {'form': form}
+    return render(request, 'base/signup.html', context)
+    
 
 def loginpage(request):
     if request.method == 'POST':
