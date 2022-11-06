@@ -75,9 +75,10 @@ def category(request):
 
 def postPage(request, pk):
     post = Blogpost.objects.get(id=pk)
-    author = User.objects.get(id=pk)
+    author = User.objects.get(id=post.author.id)
     tags = post.tag.all()
     users = User.objects.all()
+    
     post_comment = post.commentchat_set.all().order_by('-created')
     
     if request.method == 'POST':

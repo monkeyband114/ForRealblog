@@ -63,7 +63,9 @@
       <div class="object-contain items-center justify-center">
         <h1 class="text-mainBlue text-lg font-semibold">
           {{post.title}}
-          <span class="text-gray-600 font-normal"> - by {{author.name}}</span>
+          <span class="text-gray-600 font-normal">
+            - by {{author.username}}</span
+          >
         </h1>
       </div>
       <div class="mb-8 mt-6">
@@ -106,7 +108,7 @@
         <div class="flex flex-row">
           <div class="rounded-full w-[20px] h-[20px]">
             <img
-              src="../../../static/assets/mike.png"
+              src="{{comment.user.avatar.url}}"
               alt="picicon"
               class="object-contain rounded-full"
             />
