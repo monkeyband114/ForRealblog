@@ -120,7 +120,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-MEDIA_URL = "/assets/"
+MEDIA_URL = "assets/"
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 

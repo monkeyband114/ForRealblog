@@ -147,7 +147,7 @@
   class="flex flex-col md:flex-row justify-center items-center object-contain py-4 px-8 gap-4"
 >
   {% for post in posts %}
-  <a href="{% url 'postpage' post.id %}" class="cursor-pointer">
+  <!-- <a href="{% url 'postpage' post.id %}" class="cursor-pointer">
     <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
       <img
         class="w-full"
@@ -167,7 +167,29 @@
         {% endfor %}
       </div>
     </div>
-  </a>
+  </a> -->
+  <div
+    class="blog relative rounded-md shadow bg-white dark:shadow-gray-800 overflow-hidden md:w-[25%]"
+  >
+    <img src="{{post.image.url}}" alt="" />
+
+    <div class="content p-6">
+      <a
+        href="blog-detail.html"
+        class="text-lg hover:text-violet-600 dark:text-white dark:hover:text-violet-600 transition duration-500 ease-in-out font-medium h5"
+        >{{post.title}}</a
+      >
+      <p class="text-slate-400 mt-3">{{post.article|truncatechars:50}}</p>
+
+      <div class="mt-5">
+        <a
+          href="{% url 'postpage' post.id %}"
+          class="hover:text-violet-600 dark:hover:text-violet-600 after:bg-violet-600 dark:text-white transition duration-500"
+          >Read More <i class="uil uil-arrow-right"></i
+        ></a>
+      </div>
+    </div>
+  </div>
   {% endfor %}
 </div>
 
